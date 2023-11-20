@@ -1,0 +1,5 @@
+site_name: oligopipe
+site_url: https://oligopipe.docs.com/
+nav:
+  - Home: index.md
+  - FAQ: faq.md
