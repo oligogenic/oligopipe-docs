@@ -4,23 +4,23 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="None">
         
-        <link rel="canonical" href="https://oligopipe.docs.com/">
-        <link rel="shortcut icon" href="img/favicon.ico">
-        <title>oligopipe</title>
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/font-awesome.min.css" rel="stylesheet">
-        <link href="css/base.css" rel="stylesheet">
+        
+        <link rel="canonical" href="https://oligopipe.docs.com/hop/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Prioritization - HOP - oligopipe</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
         <script>hljs.highlightAll();</script> 
     </head>
 
-    <body class="homepage">
+    <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href=".">oligopipe</a>
+                <a class="navbar-brand" href="..">oligopipe</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
@@ -31,29 +31,29 @@
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
                             <li class="navitem">
-                                <a href="input/" class="nav-link">Input</a>
+                                <a href="../input/" class="nav-link">Input</a>
                             </li>
                             <li class="navitem">
-                                <a href="preprocess/" class="nav-link">Preprocessing</a>
+                                <a href="../preprocess/" class="nav-link">Preprocessing</a>
                             </li>
-                            <li class="dropdown">
+                            <li class="dropdown active">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Methods <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="varcopp/" class="dropdown-item">Prediction - VarCoPP</a>
+    <a href="../varcopp/" class="dropdown-item">Prediction - VarCoPP</a>
 </li>
                                     
 <li>
-    <a href="hop/" class="dropdown-item">Prioritization - HOP</a>
+    <a href="./" class="dropdown-item active">Prioritization - HOP</a>
 </li>
                                 </ul>
                             </li>
                             <li class="navitem">
-                                <a href="results/" class="nav-link">Results</a>
+                                <a href="../results/" class="nav-link">Results</a>
                             </li>
                             <li class="navitem">
-                                <a href="faq/" class="nav-link">FAQ</a>
+                                <a href="../faq/" class="nav-link">FAQ</a>
                             </li>
                         </ul>
 
@@ -63,6 +63,16 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../varcopp/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../results/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
                     </ul>
                 </div>
             </div>
@@ -80,42 +90,12 @@
     
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
-            
-            <li class="nav-item" data-level="1"><a href="#oligopipe-documentation" class="nav-link">Oligopipe documentation</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#summary" class="nav-link">Summary</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#what-can-you-do-with-oligopipe" class="nav-link">What can you do with oligopipe?</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-              </ul>
-            </li>
         </ul>
     </div>
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="oligopipe-documentation">Oligopipe documentation<a class="headerlink" href="#oligopipe-documentation" title="Permanent link">#</a></h1>
-<p>Click on a header on the panel above to get directed to the main sections of this documentation</p>
-<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">#</a></h2>
-<p><code>oligopipe</code> is a Python package for the prediction  candidate disease-causing variant combinations, aiming to aid in uncovering the causes of <strong>oligogenic diseases</strong> (<em>i.e.</em> diseases caused by variants in a small number of genes). 
-This tool integrates innovative <strong>machine learning methods</strong> for combinatorial variant pathogenicity prediction.</p>
-<h3 id="what-can-you-do-with-oligopipe">What can you do with <code>oligopipe</code>?<a class="headerlink" href="#what-can-you-do-with-oligopipe" title="Permanent link">#</a></h3>
-<p>SUBMIT AND FILTER YOUR VARIANTS</p>
-<p>You can submit the variants of a single individual either as a <a href="input/##1-tab-delimited-variant-list">variant list</a> 
-or a <a href="input/#2-vcf-file">VCF file</a>.<br />
-You can also <a href="preprocess/#data-filtering">filter</a> your variants based on their Minor Allele Frequency (MAF), their position in the gene and/or based on a specific gene panel of your choice.</p>
-<p>PREDICT CANDIDATE DISEASE-CAUSING VARIANT COMBINATIONS</p>
-<p>With <code>oligopipe</code> you can predict candidate pathogenic variant combinations in any gene pair present in your data with
-<a href="varcopp/">VarCoPP</a>.</p>
-<blockquote>
-<p><strong>NOTE:</strong> The results of this pipeline are based on <strong>predictive tools.</strong> They are provided for research, educational and informational purposes only and the pathogenicity predictions should be subject to further scientific and clinical investigation.<br />
-It is <strong>not in any way</strong> intended to be used as a substitute for professional medical advice, diagnosis, treatment or care.</p>
-</blockquote>
-<hr /></div>
+<p>Under construction</p></div>
             </div>
         </div>
 
@@ -123,14 +103,14 @@ It is <strong>not in any way</strong> intended to be used as a substitute for pr
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
-        <script src="js/jquery-3.6.0.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+        <script src="../js/jquery-3.6.0.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
         <script>
-            var base_url = ".",
+            var base_url = "..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="js/base.js"></script>
-        <script src="search/main.js"></script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -195,8 +175,3 @@ It is <strong>not in any way</strong> intended to be used as a substitute for pr
 
     </body>
 </html>
-
-<!--
-MkDocs version : 1.5.3
-Build Date UTC : 2023-11-21 12:18:08.288606+00:00
--->

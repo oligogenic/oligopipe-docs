@@ -31,7 +31,26 @@
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
                             <li class="navitem">
-                                <a href=".." class="nav-link">Home</a>
+                                <a href="../input/" class="nav-link">Input</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../preprocess/" class="nav-link">Preprocessing</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Methods <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../varcopp/" class="dropdown-item">Prediction - VarCoPP</a>
+</li>
+                                    
+<li>
+    <a href="../hop/" class="dropdown-item">Prioritization - HOP</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="navitem">
+                                <a href="../results/" class="nav-link">Results</a>
                             </li>
                             <li class="navitem active">
                                 <a href="./" class="nav-link">FAQ</a>
@@ -45,7 +64,7 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href=".." class="nav-link">
+                                <a rel="prev" href="../results/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
@@ -71,12 +90,73 @@
     
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#frequently-asked-questions" class="nav-link">Frequently Asked Questions</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#general-faq" class="nav-link">General FAQ</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#specific-to-prediction-with-varcopp" class="nav-link">Specific to prediction with VarCoPP</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#specific-to-prioritization-with-hop" class="nav-link">Specific to prioritization with HOP</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
                     <div class="col-md-9" role="main">
 
-</div>
+<h1 id="frequently-asked-questions">Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Permanent link">#</a></h1>
+<p>If answers to your questions are not provided in this section and no information about your question is mentioned in the Documentation page, you can <a href="mailto:oligopipe@ibsquare.be">contact us</a>.</p>
+<h2 id="general-faq">General FAQ<a class="headerlink" href="#general-faq" title="Permanent link">#</a></h2>
+<p><strong>Can I include variants from multiple patients in my input?</strong><br />
+<strong>No</strong>, the analysis should be <strong>restricted to a single individual only</strong>, as <code>oligopipe</code> creates all possible variant combinations from your variant list assuming that they belong to the same person.<br />
+If you want to analyse multiple patients, you should separate their variants in different files and explore them individually.</p>
+<hr />
+<p><strong>Is there a specific input format for the insertions and deletions?</strong><br />
+<code>oligopipe</code> accepts different types of variant format for the insertions and deletions, involving dashes or not.<br />
+You can consult the <a href="../input/#variant-types">Variant Types</a> section for a detailed explanation.</p>
+<hr />
+<p><strong>What types of digenic combinations does <code>oligopipe</code> create?</strong><br />
+<code>oligopipe</code> creates all possible di-allelic, tri-allelic and tetra-llelic variant combinations between any gene pair present in your data, including heterozygous compound variants in one of the two genes. Tetra-llelic combinations with four heterozygous variants (two in each gene) are not created, as these combinations were absent from our training set.<br />
+For a detailed explanation, you can consult the <a href="../preprocess/#creating-digenic-variant-combinations">Creating digenic combinations</a> section.</p>
+<hr />
+<p><strong>Not all of the expected output files are generated, since no variant combinations are left after preprocessing. What should I do?</strong>  </p>
+<p>You can check the following steps to explore possible solutions:</p>
+<ul>
+<li>Check whether the selected genome version is correct. <code>oligopipe</code> can annotate variants using the <strong>GRCh37/hg19 or GRCh38/hg38 genome version</strong>, see the <a href="../input/#genome-version">Genome version</a> section for more details.</li>
+<li>Try to relax your variant or gene filtering options, especially the option for keeping intronic and synonymous variants.</li>
+<li>Ensure that you have more than one gene present in your data. <code>oligopipe</code> makes variant combinations between <strong>gene pairs</strong>, so it requires the presence of at least two different genes in your data.</li>
+<li>If you have submitted a small number of variants, these variants may have been excluded from the analysis during the annotation process. For example, the CADD score for those variants may be missing, and as this score is important for the predictions, variants without an annotated CADD score are excluded from the analysis. A detailed list of all possible cases where your variants may be excluded is presented in the <a href="../preprocess/#variant-exclusion">Variant Exclusion</a> section.</li>
+</ul>
+<p>If you have checked the previous steps and you still experience issues, you can <a href="mailto:oligopipe@ibsquare.be">send us an email</a>.</p>
+<hr />
+<p><strong>SOME variants of my initial submission are missing from the results</strong>  </p>
+<ul>
+<li>Please check the variant and/or gene filtering options you have selected during your submission, as these play an important role on the absence of some of your variants in the analysis. The variant filtering options offered by <code>oligopipe</code> are <strong>automatically pre-selected</strong> during the submission, unless you unselect them.</li>
+<li>Make sure that the variant information and format you provided is correct for all variants. In case you copy-pasted a variant list using the box panel, make sure that the zygosity values are not misspelled (<strong>Heterozygous</strong> or <strong>Homozygous</strong> zygosity values are accepted), see also the <a href="../input/#1-tab-delimited-variant-list">tab-delimited variant list</a> section.</li>
+<li>Otherwise, some variants may have been excluded from your analysis during the data annotation process. You can consult the <a href="../preprocess/#variant_exclusion">Variant Exclusion</a> section for a detailed description of such cases.</li>
+</ul>
+<p>For more information regarding our filtering options and the data annotation process, you can consult the <a href="../preprocess/">Data Filtering and Annotation</a> section.</p>
+<hr />
+<p><strong>I am pretty sure that a variant is supposed to be mapped to a specific gene (according to my knowledge or the gene panel I provided), but I see another gene name instead in the results.</strong>  </p>
+<p>This can happen for the following reasons:</p>
+<ul>
+<li>The gene symbol present at the gene panel file is not the official HGNC gene symbol. During annotation we only use the official HGNC gene symbols, and thus, we will display this symbol instead of the one that you provided.</li>
+<li>The position of the variant for that gene overlaps with other genes. In this tricky situation, we have to choose one gene to continue with predictions. We have developed a set of priority rules for that (see the <a href="../preprocess/#1-gene-annotation">Gene annotation</a> section). Therefore, there is a chance that we have assigned this variant to another gene instead. Unfortunately, it is not possible to re-assign it to your favourite gene manually and we can potentially do changes in our database for that only during major <code>oligopipe</code> updates. Please note that <strong>you shouldn't change that gene name for the variant in the results, as some prediction features are gene-specific</strong>.<br />
+    If you think that this mapping is definitely wrong, you can <a href="mailto:oligopipe@ibsquare.be">send us an email</a>.</li>
+</ul>
+<h2 id="specific-to-prediction-with-varcopp">Specific to prediction with VarCoPP<a class="headerlink" href="#specific-to-prediction-with-varcopp" title="Permanent link">#</a></h2>
+<p><strong>Is there a limit on the number of variants I can analyse?</strong> </p>
+<p>In general, we <strong>highly recommend</strong> the use of variants from up to <strong>300 genes</strong>, as well as the application of the <a href="../preprocess/#1-variant-filtering">variant filtering procedure</a> that is provided with <code>oligopipe</code>, in order to limit the amount non-relevant combinations that will be tested.  </p>
+<hr />
+<h2 id="specific-to-prioritization-with-hop">Specific to prioritization with HOP<a class="headerlink" href="#specific-to-prioritization-with-hop" title="Permanent link">#</a></h2></div>
             </div>
         </div>
 

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://oligopipe.docs.com/input/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Input - oligopipe</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">oligopipe</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem active">
+                                <a href="./" class="nav-link">Input</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../preprocess/" class="nav-link">Preprocessing</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Methods <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../varcopp/" class="dropdown-item">Prediction - VarCoPP</a>
+</li>
+                                    
+<li>
+    <a href="../hop/" class="dropdown-item">Prioritization - HOP</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="navitem">
+                                <a href="../results/" class="nav-link">Results</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../faq/" class="nav-link">FAQ</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" class="nav-link disabled">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../preprocess/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#the-input-data" class="nav-link">The input data</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#types-of-input-files" class="nav-link">Types of input files</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#1-tab-delimited-variant-list" class="nav-link">1. Tab-delimited variant list</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#2-vcf-file" class="nav-link">2. VCF file</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#variant-types" class="nav-link">Variant types</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#genome-version" class="nav-link">Genome version</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#patient-information" class="nav-link">Patient information</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="the-input-data">The input data<a class="headerlink" href="#the-input-data" title="Permanent link">#</a></h1>
+<p><code>oligopipe</code> accepts a list of variants from a single individual only, as it creates all possible variant combinations between pairs assuming that these belong to the same individual.</p>
+<p>You can provide either Single Nucleotide Variants (SNVs) or small insertions/deletions (indels).</p>
+<p><strong>NOTE:</strong> The use of <code>oligopipe</code> for the analysis of complete patient exomes is <strong>NOT</strong> recommended, as our methods are not fine-tuned for exomes. Please restrict your analysis to <strong>relevant gene panels</strong> for the disease of interest. If your VCF contains the complete exome of an individual, you can upload it in <code>oligopipe</code> as it is, and then use the <strong>Variant Filtering</strong> and <strong>Gene Filtering</strong> options before submitting your data.</p>
+<h2 id="types-of-input-files">Types of input files<a class="headerlink" href="#types-of-input-files" title="Permanent link">#</a></h2>
+<p>There are two different types of variant input that you can use to upload your data: either a <a href="#delimitedfile">variant list</a> or a <a href="#vcffile">VCF file</a>. After uploading your data, you can start the analysis by clicking on the  button.</p>
+<h3 id="1-tab-delimited-variant-list">1. Tab-delimited variant list<a class="headerlink" href="#1-tab-delimited-variant-list" title="Permanent link">#</a></h3>
+<p>TODO TSV example</p>
+<p>At the left panel of the <strong>Submit variants</strong> page you can insert/copy-paste a variant list. Each line should contain <strong>tab- or space-delimited</strong> information for one variant, in the corresponding order: <strong>chromosome, position, reference allele, alternative allele, zygosity</strong>.</p>
+<p>No headers are needed.</p>
+<p>The zygosity values should be either <strong>Heterozygous</strong> or <strong>Homozygous</strong>. During the analysis, <code>oligopipe</code> automatically converts X-linked variants in males as Hemizygous.</p>
+<p>You can also manually insert a variant in this list by typing information:</p>
+<ul>
+<li>at the next line and making sure that you use the same delimiter for all columns</li>
+<li>at the corresponding <strong>chr, position, reference allele, alternative allele, Zygosity</strong> column fields and pressing the button.</li>
+</ul>
+<p><strong>NOTE:</strong> using the variant list panel, you can upload up to <strong>80000</strong> variants.</p>
+<h3 id="2-vcf-file">2. VCF file<a class="headerlink" href="#2-vcf-file" title="Permanent link">#</a></h3>
+<p>Alternatively, you can submit a VCF file (version 4.2) with your variants.</p>
+<blockquote>
+<p><strong>NOTE:</strong> The file can also be compressed either with <strong>zip, gzip, bzip2</strong> or <strong>xz</strong>.</p>
+</blockquote>
+<p><code>oligopipe</code> requires as minimum the presence of:</p>
+<ul>
+<li>
+<p>the <strong>#Header Line</strong>: #CHROM POS ID REF ALT etc... line  </p>
+</li>
+<li>
+<p>the columns <strong>CHROM, POS, ID, REF, ALT, FORMAT, SAMPLE_NAME</strong> (patient information column containing values corresponding to the FORMAT field).  </p>
+</li>
+<li>
+<p>the <strong>genotype (GT)</strong> field for each variant at the FORMAT and SAMPLE_NAME columns. We use GT to define the zygosity of the variant and to pick the correct alternative allele if there are multiple ones (separated by commas) in ALT.<br />
+    In case variants with GT: 0/0 ; 0|0 ; ./. ; . are present, these are discarded from the analysis. Allele combinations only consisting of alternative alleles (e.g. GT: 1/2 or 3/2) are handled as two separate heterozygous variants.</p>
+</li>
+</ul>
+<p>Any other meta-information lines on the top of the file or any extra columns and fields (e.g. QUAL, INFO, etc.) can be present, but <code>oligopipe</code> will ignore them.</p>
+<blockquote>
+<p><strong>NOTE:</strong> if your VCF contains information for <strong>several individuals</strong>, you should separate the information of each individual in <strong>different VCF files</strong> and run them individually in <code>oligopipe</code>.</p>
+</blockquote>
+<h2 id="variant-types">Variant types<a class="headerlink" href="#variant-types" title="Permanent link">#</a></h2>
+<p>You can either submit <strong>Single Nucleotide Variants (SNVs)</strong> or <strong>small insertions/deletions (indels)</strong>. Other types of variants (e.g. CNVs) can be present in your list, but they will not be included in the analysis.</p>
+<p>Specifically for indels, you can submit your variants in either one of the two different ways that are shown for a particular variant example (the VCF file can contain more columns).</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Tab-delimited list</th>
+<th>VCF file</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Example with dashes</td>
+<td>16 3254468 CTT - Heterozygous</td>
+<td>16 3254468 . CTT - PASS GT 1/0</td>
+</tr>
+<tr>
+<td>Example without dashes</td>
+<td>16 3254467 CCTT C Heterozygous</td>
+<td>16 3254467 . CCTT C PASS GT 1/0</td>
+</tr>
+</tbody>
+</table>
+<h2 id="genome-version">Genome version<a class="headerlink" href="#genome-version" title="Permanent link">#</a></h2>
+<p>At the moment <code>oligopipe</code> accepts and annotates variants using either the <strong>GRCh37/hg19</strong> or the <strong>GRCh38/hg38</strong> human genome assembly.</p>
+<p>We do not make conversions of genomic coordinates from different genome versions. In case you need to convert your variants, you are encouraged to use tools like the <a href="http://genome.ucsc.edu/cgi-bin/hgLiftOver">UCSC</a>, <a href="https://www.ensembl.org/Homo_sapiens/Tools/AssemblyConverter?db=core">Ensembl</a> and <a href="https://www.ncbi.nlm.nih.gov/genome/tools/remap">NCBI</a> assembly converters.</p>
+<h2 id="patient-information">Patient information<a class="headerlink" href="#patient-information" title="Permanent link">#</a></h2>
+<p>Except from the variant list, you should also provide (if available) the sex information of the patient, i.e. if the person is a <strong>male</strong> or a <strong>female</strong>.</p>
+<p><code>oligopipe</code> handles differently X-linked variants in males (<strong>hemizygous</strong> variants) compared to females, and therefore this information is important in order to provide better predictions.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/jquery-3.6.0.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

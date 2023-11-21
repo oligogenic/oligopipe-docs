@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://oligopipe.docs.com/preprocess/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Preprocessing - oligopipe</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">oligopipe</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../input/" class="nav-link">Input</a>
+                            </li>
+                            <li class="navitem active">
+                                <a href="./" class="nav-link">Preprocessing</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Methods <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../varcopp/" class="dropdown-item">Prediction - VarCoPP</a>
+</li>
+                                    
+<li>
+    <a href="../hop/" class="dropdown-item">Prioritization - HOP</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="navitem">
+                                <a href="../results/" class="nav-link">Results</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../faq/" class="nav-link">FAQ</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../input/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../varcopp/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#data-filtering-and-annotation" class="nav-link">Data filtering and annotation</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#data-filtering" class="nav-link">Data filtering</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#1-variant-filtering" class="nav-link">1. Variant filtering</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#2-gene-filtering" class="nav-link">2. Gene filtering</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#data-annotation" class="nav-link">Data annotation</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#1-gene-annotation" class="nav-link">1. Gene annotation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#2-gene-pair-annotation" class="nav-link">2. Gene pair annotation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#3-variant-annotation" class="nav-link">3. Variant annotation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#creating-digenic-variant-combinations" class="nav-link">Creating digenic variant combinations</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#1-number-of-variants-per-combination" class="nav-link">1. Number of variants per combination</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#2-order-of-genes" class="nav-link">2. Order of genes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#3-order-of-variant-alleles-inside-the-gene" class="nav-link">3. Order of variant alleles inside the gene</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="data-filtering-and-annotation">Data filtering and annotation<a class="headerlink" href="#data-filtering-and-annotation" title="Permanent link">#</a></h1>
+<h2 id="data-filtering">Data filtering<a class="headerlink" href="#data-filtering" title="Permanent link">#</a></h2>
+<p>In the <strong>Submit variants</strong> page, <code>oligopipe</code> offers a recommended variant and gene filtering procedure that will automatically run when you submit your data. This procedure is highly recommended, as it will limit the amount of variant combinations to be tested and will restrict the analysis to the most relevant variants.</p>
+<p>There are two types of filtering offered by <code>oligopipe</code>: a variant filtering and a gene filtering procedure.</p>
+<h3 id="1-variant-filtering">1. Variant filtering<a class="headerlink" href="#1-variant-filtering" title="Permanent link">#</a></h3>
+<p>The variant filtering procedure ensures that your analysis will contain variants in accordance with the variant types 
+used to train the predictive methods (<a href="../varcopp/">VarCoPP</a> and <a href="../hop/">HOP</a>) integrated in <code>oligopipe</code>: 
+exonic and splicing variants of MAF lower or equal than 3.5% in protein-coding genes.</p>
+<p>The three different filtering options are already pre-selected in the Variant Filtering panel of the submission page. 
+You can <strong>unselect</strong> a filtering option, by clicking on its corresponding check-box.</p>
+<h5 id="maf"><strong>MAF</strong><a class="headerlink" href="#maf" title="Permanent link">#</a></h5>
+<p>Select the minimum threshold of MAF for the variants. A MAF of ≤ 0.035 was used to train VarCoPP and is the recommended threshold.</p>
+<h5 id="remove-intergenic"><strong>Remove Intergenic</strong><a class="headerlink" href="#remove-intergenic" title="Permanent link">#</a></h5>
+<p>Removes variants that are not inside the defined gene coordinates, based on the selected assembly (GRCh37/hg19 or GRCh38/hg38).</p>
+<h5 id="remove-intronic-and-synonymous"><strong>Remove intronic and synonymous</strong><a class="headerlink" href="#remove-intronic-and-synonymous" title="Permanent link">#</a></h5>
+<p>Removes:</p>
+<ul>
+<li>
+<p>all <strong>intronic</strong> variants that have a distance bigger than 13 nucleotides from each exon edge, based on the exon coordinates of the <strong>canonical transcript</strong> of the gene.  </p>
+</li>
+<li>
+<p>all <strong>synonymous</strong> variants that have a distance bigger than 195 nucleotides from each exon edge, based on the exon coordinates of the <strong>canonical transcript</strong> of the gene.</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>NOTE:</strong> apart from the requested filtering steps, <code>oligopipe</code> may also exclude some extra variants during the <strong>data annotation process</strong>. You can consult the complete list of variant exclusion cases during that process <a href="#variant_exclusion">here</a>.</p>
+</blockquote>
+<h3 id="2-gene-filtering">2. Gene filtering<a class="headerlink" href="#2-gene-filtering" title="Permanent link">#</a></h3>
+<p>The gene filtering option restricts the analysis to a <strong>specified list of relevant genes</strong> that can be present in your data. 
+This procedure is <strong>highly recommended</strong> in case your VCF contains the complete exome of an individual, 
+as it can dramatically limit the amount of False Positives that can be obtained.</p>
+<p>To run your analysis only with a subset of genes, you can simply upload a .txt file with the gene symbols you are 
+interested to include, each gene being in a different line. 
+<code>oligopipe</code> will use this list to filter the genes that will be used in the analysis.</p>
+<blockquote>
+<p><strong>NOTE:</strong> please make sure that you provide the <strong>official approved symbol</strong> for each gene (for verification, you can consult the <a href="http://www.genenames.org/">HGNC gene nomenclature page</a>.</p>
+</blockquote>
+<h2 id="data-annotation">Data annotation<a class="headerlink" href="#data-annotation" title="Permanent link">#</a></h2>
+<p>After you submit your data, <code>oligopipe</code>:</p>
+<ol>
+<li>automatically annotates them with the biological information needed for the integrated methods</li>
+<li>creates all possible variant combinations between any pair of genes present in your variant input and</li>
+<li>orders the variants and genes inside each combination.</li>
+</ol>
+<p>Below, you can find some important parameters for each process.</p>
+<h3 id="1-gene-annotation">1. Gene annotation<a class="headerlink" href="#1-gene-annotation" title="Permanent link">#</a></h3>
+<p>To map variants in genes, <code>oligopipe</code> uses at first the gene information that is present in the <a href="https://cadd.gs.washington.edu/">CADD</a> annotation file for that variant and uses only the <strong>canonical transcripts</strong> of those genes, according to the <a href="https://www.ensembl.org/index.html">Ensembl</a> <strong>GRCh37/hg19</strong> or <strong>GRCh38/hg38</strong> genome version.</p>
+<p>In cases where a variant can be mapped to <strong>multiple genes</strong>, <code>oligopipe</code> maps that variant to only <strong>one gene</strong> based on a set of priority rules that include (starting from higher to lower priority): valid gene IDs and canonical transcript, prioritisation of genes based on their biotype and the functional consequence of the variant, prioritisation of genes where the variant falls inside the gene and canonical transcript coordinates, presence of a CCDS, prioritisation of gene with the longest canonical transcript, etc.</p>
+<p><code>oligopipe</code> then annotates the genes with:</p>
+<ul>
+<li>the required gene features for <a href="../varcopp/#prediction-features">VarCoPP</a> (detailed description of the features and their sources in the link)</li>
+<li>the <a href="https://journals.plos.org/plosgenetics/article/info:doi/10.1371/journal.pgen.1003709">Residual Variation Intolerance Score (RVIS)</a>, a metric that show the susceptibility of a gene to disease. Lower values of RVIS indicate greater susceptibility of a gene to candidate disease-causing mutations.</li>
+</ul>
+<h3 id="2-gene-pair-annotation">2. Gene pair annotation<a class="headerlink" href="#2-gene-pair-annotation" title="Permanent link">#</a></h3>
+<p><code>oligopipe</code> annotates a gene pair with the gene pair features required by <a href="../varcopp/#prediction-features">VarCoPP</a> (detailed description of the features and their sources in the link).</p>
+<p><code>oligopipe</code> uses the <a href="https://journals.plos.org/plosgenetics/article/info:doi/10.1371/journal.pgen.1003709">Residual Variation Intolerance Score (RVIS)</a> metric to <strong>order the appearance of genes</strong> inside each digenic variant combination, with gene A being always the gene with the lower RVIS value, and thus more probable to be have a disturbed function due to the presence of a variant. You can find more details about how <code>oligopipe</code> creates digenic variant combinations and orders variants and genes in the <a href="./#creating-digenic-variant-combinations">Creating digenic variant combinations</a> section.</p>
+<h3 id="3-variant-annotation">3. Variant annotation<a class="headerlink" href="#3-variant-annotation" title="Permanent link">#</a></h3>
+<p><code>oligopipe</code> first maps a variant in a gene based on the <a href="#1-gene-annotation">Gene annotation</a> process described above. 
+It then annotates each variant with the required variant features for <a href="../varcopp/#prediction-features">VarCoPP</a>, the most important being the <a href="https://www.ncbi.nlm.nih.gov/pubmed/?term=24487276%5Buid%5D">CADD score</a> (detailed description of the features and their sources in the link)</p>
+<p>When <code>oligopipe</code> creates digenic variant combinations, it uses the <a href="https://www.ncbi.nlm.nih.gov/pubmed/?term=24487276%5Buid%5D">CADD score</a> 
+to <strong>order the appearance of variants</strong> that are present inside the same gene (i.e. in cases of heterozygous compound variants). 
+You can find more details about how <code>oligopipe</code> creates digenic variant combinations and orders variants and genes 
+in the <a href="#creating-digenic-variant-combinations">Creating digenic variant combinations</a> section.</p>
+<h5 id="variant-exclusion">Variant exclusion<a class="headerlink" href="#variant-exclusion" title="Permanent link">#</a></h5>
+<p>In some situations during the data annotation process <code>oligopipe</code> excludes variants from the analysis and you will not find them in the results:</p>
+<ul>
+<li><strong>Variant not exonic in canonical transcript</strong><br />
+    We use only the canonical Ensembl transcript identifiers to annotate our variants. If you have selected to exclude intronic variants from your analysis, if the variant is not exonic in the canonical transcript of the gene, even if it may be exonic in an alternative transcript, it will be excluded.</li>
+<li><strong>Variant with invalid zygosity</strong><br />
+    Variants with GT:0/0 or GT:0|0 in a VCF file are considered invalid and are excluded from the analysis.</li>
+<li><strong>CADD score not available</strong><br />
+<code>oligopipe</code> annotates variants with a <a href="https://www.ncbi.nlm.nih.gov/pubmed/?term=24487276%5Buid%5D">CADD score</a>, which is a feature required for the pathogenicity predictions. As this feature is important for the predictions, if a CADD score is not available for a variant, that variant is excluded for the analysis, as a missing value may severely alter the results.</li>
+<li><strong>Variants only in one gene</strong><br />
+    As <code>oligopipe</code> creates combinations between <strong>gene pairs</strong>, if your input data includes variants from one gene only, you will not get any results.</li>
+<li><strong>The variant is a CNV or medium/long-sized InDel</strong><br />
+<code>oligopipe</code> analyses <strong>only</strong> SNVs and small insertions and deletions (up to 100 bp currently). Any other variant type in your data is automatically excluded from the analysis. This is mainly due to the computational resource limitations of our service.</li>
+</ul>
+<h2 id="creating-digenic-variant-combinations">Creating digenic variant combinations<a class="headerlink" href="#creating-digenic-variant-combinations" title="Permanent link">#</a></h2>
+<p>After annotation, VarCoPP creates all possible variant combinations between any gene pair present in your input, taking into consideration any filtering options you have included during your variant submission.</p>
+<p>You can find below a list of details and constraints that take place during this procedure.</p>
+<h3 id="1-number-of-variants-per-combination">1. Number of variants per combination<a class="headerlink" href="#1-number-of-variants-per-combination" title="Permanent link">#</a></h3>
+<p><code>oligopipe</code> creates for any gene pair variant combinations that can be:</p>
+<ul>
+<li>
+<p>bi-allelic (i.e. one mutated allele at each gene)<br />
+<em>e.g.:</em> <em>one heterozygous variant per gene</em></p>
+</li>
+<li>
+<p>tri-allelic (i.e. three mutated alleles in total)<br />
+<em>e.g.:</em> <em>an homozygous variant at gene A and an heterozygous variant in gene B</em>  </p>
+</li>
+<li>
+<p>tetra-allelic (i.e. four mutated alleles in total)<br />
+<em>e.g.:</em> <em>one homozygous variant per gene</em>  </p>
+</li>
+</ul>
+<p>In the tri-allelic and tetra-allelic cases, a digenic combination can also include <strong>heterozygous compound variants</strong> (i.e. two different mutated alleles in the same gene), along with the presence of variant(s) in another gene.</p>
+<blockquote>
+<p><strong>NOTE:</strong> Tetra-allelic variant combinations with heterozygous compound variants in <strong>BOTH</strong> genes are <strong>not</strong> created.</p>
+<p><strong>NOTE:</strong> In case where multiple heterozygous variants are present in a single gene, these are used together as heterozygous compound variants in a combination with another gene and not individually anymore. This is to solve the problem of certain genes being over-represented in the results just because they contain heterozygous compound variants.<br />
+If a single gene contains more than two heterozygous variants, these are used in pairs of two as we always use two mutated alleles per gene.</p>
+</blockquote>
+<h3 id="2-order-of-genes">2. Order of genes<a class="headerlink" href="#2-order-of-genes" title="Permanent link">#</a></h3>
+<p>For each digenic variant combination, <strong>gene A</strong> is always the gene with the <strong>lowest</strong> <a href="https://journals.plos.org/plosgenetics/article/info:doi/10.1371/journal.pgen.1003709">Residual Variation Intolerance Score (RVIS)</a> 
+(see also the <a href="#1-gene-annotation">Gene Annotation</a> section) and, thus, the one with a higher probability to be associated with a disease.</p>
+<h3 id="3-order-of-variant-alleles-inside-the-gene">3. Order of variant alleles inside the gene<a class="headerlink" href="#3-order-of-variant-alleles-inside-the-gene" title="Permanent link">#</a></h3>
+<p>In case of two different mutated alleles in the same gene (heterozygous compound cases), the <strong>variant allele 1</strong> is always the variant allele with the <strong>highest CADD score</strong>.</p>
+<h5 id="a-graphical-representation-of-a-digenic-combination">A graphical representation of a digenic combination<a class="headerlink" href="#a-graphical-representation-of-a-digenic-combination" title="Permanent link">#</a></h5>
+<p><img alt="digenic combination example" src="../img/digenic_combination.png" /></p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/jquery-3.6.0.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://oligopipe.docs.com/varcopp/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Prediction - VarCoPP - oligopipe</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">oligopipe</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../input/" class="nav-link">Input</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../preprocess/" class="nav-link">Preprocessing</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Methods <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Prediction - VarCoPP</a>
+</li>
+                                    
+<li>
+    <a href="../hop/" class="dropdown-item">Prioritization - HOP</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="navitem">
+                                <a href="../results/" class="nav-link">Results</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../faq/" class="nav-link">FAQ</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../preprocess/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../hop/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#varcopp20" class="nav-link">VarCoPP2.0</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#structure-of-varcopp" class="nav-link">Structure of VarCoPP</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#prediction-features" class="nav-link">Prediction features</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#confidence-zones" class="nav-link">Confidence zones</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="varcopp20">VarCoPP2.0<a class="headerlink" href="#varcopp20" title="Permanent link">#</a></h1>
+<p>VarCoPP stands for Variant Combination Pathogenicity Predictor. It is a machine-learning method that predicts the 
+pathogenicity of any bi-locus variant combination (i.e. a combination of two to four variant alleles between two genes).</p>
+<p>The method has been published in the <em>PNAS</em> journal: <a href="https://doi.org/10.1073/pnas.1815601116">https://doi.org/10.1073/pnas.1815601116</a>. 
+The first version of the model was later improved to <strong>VarCoPP2.0</strong> using new training data, new features and a different type of model.
+VarCoPP2.0 has been published in <em>BMC Bioinformatics</em>: <a href="https://doi.org/10.1186/s12859-023-05291-3">https://doi.org/10.1186/s12859-023-05291-3</a>. </p>
+<p>Based on VarCoPP, a bi-locus variant combination can either be <strong>candidate disease-causing</strong> or <strong>neutral</strong>.</p>
+<p>VarCoPP has been trained separately for the <strong>GRCh37/hg19</strong> and <strong>GRCh38/hg38</strong> genome assembly, the correct model will run based on your assembly choice in the input.</p>
+<h2 id="structure-of-varcopp">Structure of VarCoPP<a class="headerlink" href="#structure-of-varcopp" title="Permanent link">#</a></h2>
+<p><strong>ALGORITHM</strong></p>
+<p>VarCoPP2.0 is a <strong>Balanced</strong> <a href="https://en.wikipedia.org/wiki/Random_forest">Random Forest (RF)</a> predictor that consists of 400 decision trees.</p>
+<p><strong>TRAINING DATA</strong></p>
+<p>The VarCoPP2.0 predictor has been trained on the pathogenic variant combinations present in the <a href="http://olida.ibsquare.be/">Oligogenic Diseases Database (OLIDA)</a> against a large subset of variant data derived from control individuals of the <a href="http://www.internationalgenome.org/">1000 Genomes Project (1KGP)</a>.</p>
+<p>The variant types that were used for training were the same for both OLIDA and 1KGP: exonic and splicing variants of up to 3.5% MAF, while all genes were protein coding genes.</p>
+<p><strong>RESULT CALCULATION</strong></p>
+<p>VarCoPP2.0 outputs a <strong>VarCoPP score</strong>, i.e. the probability (value between 0 and 1) that a variant combination belongs to the disease-causing class. If this probability is above 0.50 (hg19) or 0.4575 (hg38), the model predicts that the combination is disease-causing.</p>
+<h2 id="prediction-features">Prediction features<a class="headerlink" href="#prediction-features" title="Permanent link">#</a></h2>
+<p>VarCoPP uses different variant, genes and gene pairs biological features to make the predictions.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Source</th>
+<th>Feature abbreviation</th>
+<th>Gene / Variant allele</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CADD raw score  <br>PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/24487276/">24487276</a></td>
+<td>CADD v1.6</td>
+<td>CADD1  <br>CADD2  <br>CADD3  <br>CADD4</td>
+<td>Gene A / Variant allele 1  <br>Gene A / Variant allele 2  <br>Gene B / Variant allele 1  <br>Gene B / Variant allele 2</td>
+</tr>
+<tr>
+<td>Gene haploinsufficiency prediction  <br>PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/28137713/">28137713</a></td>
+<td>dbNSFP v4.1</td>
+<td>HIPred_A  <br>HIPred_B</td>
+<td>Gene A  <br>Gene B</td>
+</tr>
+<tr>
+<td>Inheritance specific pathogenicity prediction  <br>for autosomal dominant (AD),  <br>autosomal recessive (AR),  <br>and X-linked (XL) modes of inheritance  <br>PMID: <a href="http://pubmed.ncbi.nlm.nih.gov/27354691/">27354691</a></td>
+<td><a href="http://pubmed.ncbi.nlm.nih.gov/27354691/">publication  <br>supplementary  <br>data</a></td>
+<td>ISPP_AD_A  <br>ISPP_AD_B  <br>ISPP_AR_A  <br>ISPP_AR_B  <br>ISPP_XL_A</td>
+<td>Gene A  <br>Gene B  <br>Gene A  <br>Gene B  <br>Gene A</td>
+</tr>
+<tr>
+<td>Selective pressure (dN/dS)  <br>PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/26896847/">26896847</a></td>
+<td>Ensembl v99</td>
+<td>dN_dS_A</td>
+<td>Gene A</td>
+</tr>
+<tr>
+<td>Biological distance  <br>PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/24694260/">24694260</a></td>
+<td>Human Gene  <br>Connectome  <br>v12.2015</td>
+<td>Biol_Dist</td>
+<td>Gene pair AB</td>
+</tr>
+<tr>
+<td>Biological Process similarity  <br>PMID: <a href="http://pubmed.ncbi.nlm.nih.gov/10802651/">10802651</a>, <a href="http://pubmed.ncbi.nlm.nih.gov/18460186/">18460186</a></td>
+<td>Gene Ontology  <br>v2021-12</td>
+<td>BP_sim</td>
+<td>Gene pair AB</td>
+</tr>
+<tr>
+<td>Distance in an in-house developed Knowledge Graph  <br>PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/37644440/">37644440</a></td>
+<td><a href="https://doi.org/10.5281/zenodo.7185680">BOCK  <br>v1.0</a></td>
+<td>KG_dist</td>
+<td>Gene pair AB</td>
+</tr>
+</tbody>
+</table>
+<h2 id="confidence-zones">Confidence zones<a class="headerlink" href="#confidence-zones" title="Permanent link">#</a></h2>
+<p>With VarCoPP2.0 we have defined 99% and 99.9%confidence zones, delimited by the prediction threshold, which provide a <strong>probability</strong> of whether a particular combination predicted as candidate disease-causing, is actually a <strong>True Positive (TP) result</strong>. This indication can be useful for further evaluation and filtering of the predictions.</p>
+<p>These confidence zones were created by testing neutral bi-locus combinations from the 1000 Genomes Project and obtaining the minimal prediction probability that gave 1% and 0.1% False Positives respectively. If a combination falls into either one of the two zones, a coloured indication will appear in the summary results.</p>
+<p><strong>99%-confidence zone</strong></p>
+<p>Requires VarCoPP score ≥ 0.743 (hg19) or ≥ 0.647 (hg38). If a digenic combination falls inside this zone, it has 99% probability of being a TP result.</p>
+<p><strong>99.9%-confidence zone</strong></p>
+<p>Requires VarCoPP score ≥ 0.891 (hg19) or ≥ 0.85 (hg38). If a digenic combination falls inside this zone, it has 99.9% probability of being a TP result.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/jquery-3.6.0.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
