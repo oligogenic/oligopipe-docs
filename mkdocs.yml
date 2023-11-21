@@ -1,5 +1,19 @@
 site_name: oligopipe
 site_url: https://oligopipe.docs.com/
+theme:
+  name: mkdocs
+  navigation_depth: 3
+markdown_extensions:
+  - toc:
+      permalink: "#"
 nav:
-  - Home: index.md
+  - Input: input.md
+  - Preprocessing: preprocess.md
+  - Methods:
+    - Prediction - VarCoPP: varcopp.md
+    - Prioritization - HOP: hop.md
+  - Results: results.md
   - FAQ: faq.md
+validation:
+  nav:
+    omitted_files: ignore
