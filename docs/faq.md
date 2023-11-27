@@ -31,9 +31,9 @@ If you have checked the previous steps and you still experience issues, you can 
 ***
 **SOME variants of my initial submission are missing from the results**  
 
-* Please check the variant and/or gene filtering options you have selected during your submission, as these play an important role on the absence of some of your variants in the analysis. The variant filtering options offered by `oligopipe` are **automatically pre-selected** during the submission, unless you unselect them.
-* Make sure that the variant information and format you provided is correct for all variants. In case you copy-pasted a variant list using the box panel, make sure that the zygosity values are not misspelled (**Heterozygous** or **Homozygous** zygosity values are accepted), see also the [tab-delimited variant list](input.md#1-tab-delimited-variant-list) section.
-* Otherwise, some variants may have been excluded from your analysis during the data annotation process. You can consult the [Variant Exclusion](preprocess.md#variant_exclusion) section for a detailed description of such cases.
+* Please check the variant and/or gene filtering options you have selected during your submission, as these play an important role on the absence of some of your variants in the analysis. The variant filtering options offered by `oligopipe` are **automatically pre-selected**, unless you disable them.
+* Make sure that the variant information and format you provided is correct for all variants. When using input from TSV, make sure that the zygosity values are not misspelled (**Heterozygous** or **Homozygous** zygosity values are accepted), see also the [tab-delimited variant list](input.md#1-tab-delimited-variant-list) section.
+* Otherwise, some variants may have been excluded from your analysis during the data annotation process. You can consult the [Variant Exclusion](preprocess.md#variant-exclusion) section for a detailed description of such cases.
 
   
 For more information regarding our filtering options and the data annotation process, you can consult the [Data Filtering and Annotation](preprocess.md) section.
@@ -49,7 +49,7 @@ This can happen for the following reasons:
 ## Specific to prediction with VarCoPP
 **Is there a limit on the number of variants I can analyse?** 
 
-In general, we **highly recommend** the use of variants from up to **300 genes**, as well as the application of the [variant filtering procedure](preprocess.md#1-variant-filtering) that is provided with `oligopipe`, in order to limit the amount non-relevant combinations that will be tested.  
+In general, we **highly recommend** the use of variants from up to **300 genes**, as well as the application of the [variant filtering procedure](preprocess.md#1-variant-filtering) that is provided with `oligopipe`, in order to limit the amount of non-relevant combinations that will be tested.  
   
 ***
 ## Specific to prioritization with HOP
