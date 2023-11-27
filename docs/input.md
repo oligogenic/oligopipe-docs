@@ -1,35 +1,49 @@
-The input data
-==============
+The variant input
+=================
+As command-line argument:
+```bash
+Variant input:
+  -vcf VARIANTS_VCF, --variants-vcf VARIANTS_VCF
+                        The patient's VCF file, can be compressed.
+  -tsv VARIANTS_TSV, --variants-tsv VARIANTS_TSV
+                        Tab-delimited text file containing the patient's variants to analyse (chrom/pos/ref/alt/zygosity).
+  -hg {hg19,hg38}, --genome-build {hg19,hg38}
+                        The genome assembly to which the positions of your variants correspond.
+  -s patient_sex, --patient-sex patient_sex
+                        The sex of the patient (defaults to U = undetermined).
+```
+In the config YAML:
+```yaml
+patient_info:
+   # possible values: M, F, U (undetermined) or empty
+  sex:
 
-`oligopipe` accepts a list of variants from a single individual only, as it creates all possible variant combinations between pairs assuming that these belong to the same individual.
+variant_input:
+  # choose one of both input types
+  vcf_file:
+  tsv_file:
+  genome_build:   # hg19 or hg38
+```
+
+`oligopipe` accepts a list of variants from a single individual only, as it creates all possible variant combinations 
+between pairs assuming that these belong to the same individual.
 
 You can provide either Single Nucleotide Variants (SNVs) or small insertions/deletions (indels).
 
-  
-
-**NOTE:** The use of `oligopipe` for the analysis of complete patient exomes is **NOT** recommended, as our methods are not fine-tuned for exomes. Please restrict your analysis to **relevant gene panels** for the disease of interest. If your VCF contains the complete exome of an individual, you can upload it in `oligopipe` as it is, and then use the **Variant Filtering** and **Gene Filtering** options before submitting your data.
 
 Types of input files
 --------------------
 
-There are two different types of variant input that you can use to upload your data: either a [variant list](#delimitedfile) or a [VCF file](#vcffile). After uploading your data, you can start the analysis by clicking on the  button.
+There are two different types of variant input that you can use to upload your data: either a [variant list](#delimitedfile) or a [VCF file](#vcffile).
 
 ### 1. Tab-delimited variant list
 
-TODO TSV example
+Each line should contain **tab- or space-delimited** information for one variant, in the corresponding order:
+**chromosome, position, reference allele, alternative allele, zygosity**. 
 
-At the left panel of the **Submit variants** page you can insert/copy-paste a variant list. Each line should contain **tab- or space-delimited** information for one variant, in the corresponding order: **chromosome, position, reference allele, alternative allele, zygosity**.
+The zygosity values should be either '**Heterozygous**' or '**Homozygous**'. During the analysis, `oligopipe` automatically converts X-linked variants in males as Hemizygous.
 
 No headers are needed.
-
-The zygosity values should be either **Heterozygous** or **Homozygous**. During the analysis, `oligopipe` automatically converts X-linked variants in males as Hemizygous.
-
-You can also manually insert a variant in this list by typing information:
-
-* at the next line and making sure that you use the same delimiter for all columns
-* at the corresponding **chr, position, reference allele, alternative allele, Zygosity** column fields and pressing the button.
-
-**NOTE:** using the variant list panel, you can upload up to **80000** variants.
 
 ### 2. VCF file
 
@@ -39,9 +53,9 @@ Alternatively, you can submit a VCF file (version 4.2) with your variants.
 
 `oligopipe` requires as minimum the presence of:
 
-* the **#Header Line**: #CHROM POS ID REF ALT etc... line  
+* the **#Header Line**: #CHROM POS ID REF ALT etc... 
       
-    
+
 * the columns **CHROM, POS, ID, REF, ALT, FORMAT, SAMPLE_NAME** (patient information column containing values corresponding to the FORMAT field).  
       
     
@@ -50,9 +64,9 @@ Alternatively, you can submit a VCF file (version 4.2) with your variants.
 
 Any other meta-information lines on the top of the file or any extra columns and fields (e.g. QUAL, INFO, etc.) can be present, but `oligopipe` will ignore them.
 
-> **NOTE:** if your VCF contains information for **several individuals**, you should separate the information of each individual in **different VCF files** and run them individually in `oligopipe`.
+> **NOTE:** if your VCF contains information for **several individuals**, you should separate the information of each individual in **different VCF files** and run them individually.
 
-
+You can also download test VCFs to use with `oligopipe` from the [ORVAL input page](https://orval.ibsquare.be/input).
 
 Variant types
 -------------
@@ -78,6 +92,6 @@ We do not make conversions of genomic coordinates from different genome versions
 Patient information
 -------------------
 
-Except from the variant list, you should also provide (if available) the sex information of the patient, i.e. if the person is a **male** or a **female**.
+Except from the variant list, you should also provide (if available) the sex information of the patient, i.e. if the person is a **male** (M) or a **female** (F).
 
 `oligopipe` handles differently X-linked variants in males (**hemizygous** variants) compared to females, and therefore this information is important in order to provide better predictions.

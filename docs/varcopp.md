@@ -1,4 +1,5 @@
 # VarCoPP2.0
+> Via the `oligopipe predict` submodule
 
 VarCoPP stands for Variant Combination Pathogenicity Predictor. It is a machine-learning method that predicts the 
 pathogenicity of any bi-locus variant combination (i.e. a combination of two to four variant alleles between two genes).
@@ -10,6 +11,12 @@ VarCoPP2.0 has been published in _BMC Bioinformatics_: [https://doi.org/10.1186/
 Based on VarCoPP, a bi-locus variant combination can either be **candidate disease-causing** or **neutral**.
 
 VarCoPP has been trained separately for the **GRCh37/hg19** and **GRCh38/hg38** genome assembly, the correct model will run based on your assembly choice in the input.
+
+> **NOTE:** The use of VarCoPP for the analysis of complete patient exomes is **NOT** recommended, as the method is not fine-tuned for exomes. 
+> Please restrict your analysis to **relevant gene panels** for the disease of interest.
+> If your VCF contains the complete exome of an individual, you can pass it to `oligopipe predict` as it is, and use the **Variant Filtering** and **Gene Filtering** options.
+>
+> Alternatively, you can run a HOP prioritization analysis on a complete exome using `oligopipe prioritize` (see [HOP](hop.md)).
 
 ## Structure of VarCoPP
 
@@ -29,7 +36,7 @@ VarCoPP2.0 outputs a **VarCoPP score**, i.e. the probability (value between 0 an
 
 ## Prediction features
 
-VarCoPP uses different variant, genes and gene pairs biological features to make the predictions.
+VarCoPP uses different variant, gene and gene pair biological features to make the predictions.
 
 | Feature | Source | Feature abbreviation | Gene / Variant allele |
 | --- | --- | --- | --- |

@@ -8,12 +8,15 @@ markdown_extensions:
       permalink: "#"
 nav:
   - Input: input.md
-  - Preprocessing: preprocess.md
+  - Preprocessing:
+    - Preprocessing pipeline: preprocess.md
+    - Annotation database: database.md
   - Methods:
     - Prediction - VarCoPP: varcopp.md
     - Prioritization - HOP: hop.md
   - Results: results.md
   - FAQ: faq.md
+  - About: about.md
 validation:
   nav:
     omitted_files: ignore

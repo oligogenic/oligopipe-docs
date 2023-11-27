@@ -1,12 +1,10 @@
 https://oligogenic.github.io/oligopipe-docs/
 
 ## TODO
-- [ ] Integrate also technical information in this documentation 
-- [ ] Add about section with citations
+- [ ] Integrate also technical information in this documentation
 - [ ] Create issue tracker (?)
 
 ## How to edit and build
-
 ```
 pip install mkdocs
 ```
