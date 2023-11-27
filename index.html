@@ -12,12 +12,9 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/font-awesome.min.css" rel="stylesheet">
         <link href="css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
-
-        <script src="js/jquery-1.10.2.min.js" defer></script>
-        <script src="js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body class="homepage">
@@ -125,7 +122,7 @@ at the <a href="https://ibsquare.be">Interuniveristy Institute of Bioinformatics
 <p>It is available as a <strong>CLI</strong> that takes arguments (see <code>--help</code>) either directly or via a YAML configuration file.</p>
 <h3 id="what-can-you-do-with-oligopipe">What can you do with <code>oligopipe</code>?<a class="headerlink" href="#what-can-you-do-with-oligopipe" title="Permanent link">#</a></h3>
 <p>The CLI tool currently contains three modules:</p>
-<pre><code>Commands:
+<pre><code class="language-bash">Commands:
   Run oligopipe {command} -h to get detailed help
 
   {predict,prioritize,config}
@@ -149,12 +146,14 @@ It is <strong>not in any way</strong> intended to be used as a substitute for pr
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="js/jquery-3.6.0.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
         <script>
             var base_url = ".",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="js/base.js" defer></script>
-        <script src="search/main.js" defer></script>
+        <script src="js/base.js"></script>
+        <script src="search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -221,6 +220,6 @@ It is <strong>not in any way</strong> intended to be used as a substitute for pr
 </html>
 
 <!--
-MkDocs version : 1.3.1
-Build Date UTC : 2023-11-27 09:06:43.576522+00:00
+MkDocs version : 1.5.3
+Build Date UTC : 2023-11-27 11:30:01.890440+00:00
 -->

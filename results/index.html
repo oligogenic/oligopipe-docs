@@ -12,12 +12,9 @@
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
-
-        <script src="../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -109,6 +106,38 @@
             
             <li class="nav-item" data-level="1"><a href="#result-files" class="nav-link">Result files</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#results-for-every-run" class="nav-link">Results for every run</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#metadata" class="nav-link">Metadata</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#discarded-variants" class="nav-link">Discarded variants</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#prediction-results" class="nav-link">Prediction results</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#raw-results" class="nav-link">Raw results</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#gene-pair-table" class="nav-link">Gene pair table</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#digenic-combinations-table" class="nav-link">Digenic combinations table</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#prioritization-results" class="nav-link">Prioritization results</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -117,7 +146,60 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="result-files">Result files<a class="headerlink" href="#result-files" title="Permanent link">#</a></h1>
-<p>todo</p></div>
+<p>When you launch a pipeline with <code>oligopipe</code>, it will show logs and write results to different files.
+We offer a few options for managing those outputs. </p>
+<p>As command-line argument:</p>
+<pre><code class="language-bash">Output:
+  -dir output_path, --outdir output_path
+                        Output directory (defaults to working directory).
+  -pre prefix, --prefix prefix
+                        Optional prefix for the output files, use for example the patient ID.
+  -f, --force           Force re-using an output directory, which may overwrite files.
+  -v, --verbose         Show debug logs
+</code></pre>
+<p>In the config YAML:</p>
+<pre><code class="language-yaml">output:
+  dir:
+  prefix:
+</code></pre>
+<p>Below is a description of the different result files.</p>
+<h2 id="results-for-every-run">Results for every run<a class="headerlink" href="#results-for-every-run" title="Permanent link">#</a></h2>
+<h3 id="metadata">Metadata<a class="headerlink" href="#metadata" title="Permanent link">#</a></h3>
+<p>A JSON file containing metadata about the pipeline run:</p>
+<ul>
+<li>Inputs and input settings (filters, gene panel ...)</li>
+<li>Output statistics<ul>
+<li>Number of gene pairs</li>
+<li>Number of variant combinations</li>
+<li>Number of analysed variants, i.e. those that were <strong>not discarded</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="discarded-variants">Discarded variants<a class="headerlink" href="#discarded-variants" title="Permanent link">#</a></h3>
+<p>Variants can be discarded from the analysis <a href="../preprocess/#variant-exclusion">for different reasons</a>.</p>
+<p>A .txt file is created with a list of variants for each of the following categories:</p>
+<ul>
+<li>Invalid zygosity</li>
+<li>Filtered out variants</li>
+<li>
+<p>Missing variants; i.e. the CADD score for these variants is missing from our database.</p>
+<blockquote>
+<p>NOTE:
+If you can share your variant data, don't hesitate to <a href="mailto:oligopipe@ibsquare.be?subject=Missing%20variants">send us</a> the variants with missing CADD score so that we can try to add them to our database.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="prediction-results">Prediction results<a class="headerlink" href="#prediction-results" title="Permanent link">#</a></h2>
+<h3 id="raw-results">Raw results<a class="headerlink" href="#raw-results" title="Permanent link">#</a></h3>
+<p>A JSON file <code>predictions_with_annotations.json</code> containing predictions as well as the annotated features for each variant, gene and variant combination.</p>
+<h3 id="gene-pair-table">Gene pair table<a class="headerlink" href="#gene-pair-table" title="Permanent link">#</a></h3>
+<p>The previous JSON is used to produce a table (<code>predicted_gene_pairs.tsv</code>) providing statistics on all gene pairs present in your data. 
+The table contains the statistics on the percentage and number of pathogenic variant combinations for each pair, 
+and the median pathogenic score provided by VarCoPP among combinations of that pair, to get an idea of their severity.  </p>
+<p>For further explanations on how this pathogenicity score is calculated, you can consult the <a href="../varcopp/">VarCoPP</a> section.</p>
+<h3 id="digenic-combinations-table">Digenic combinations table<a class="headerlink" href="#digenic-combinations-table" title="Permanent link">#</a></h3>
+<p>From the raw results we also create a table (<code>predicted_variant_combinations.tsv</code>) with all digenic variant combinations and their predictions.</p>
+<h2 id="prioritization-results">Prioritization results<a class="headerlink" href="#prioritization-results" title="Permanent link">#</a></h2></div>
             </div>
         </div>
 
@@ -125,12 +207,14 @@
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../js/jquery-3.6.0.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
         <script>
             var base_url = "..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../js/base.js" defer></script>
-        <script src="../search/main.js" defer></script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

@@ -12,12 +12,9 @@
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
-
-        <script src="../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -107,8 +104,12 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#_1" class="nav-link"></a>
+            <li class="nav-item" data-level="1"><a href="#annotation-database" class="nav-link">Annotation database</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#pass-credentials-to-oligopipe" class="nav-link">Pass credentials to oligopipe</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -116,9 +117,13 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="_1"><a class="headerlink" href="#_1" title="Permanent link">#</a></h1>
+<h1 id="annotation-database">Annotation database<a class="headerlink" href="#annotation-database" title="Permanent link">#</a></h1>
+<p>The oligogenic pipelines rely on an annotation database for quick retrieval of the variant, gene and gene pair input features for VarCoPP.</p>
+<p>We currently offer limited access to such a database for use in this package. If you wish to get access, 
+please <a href="mailto:oligogenic@ibsquare.be">email us</a> so that we can provide you with credentials.</p>
+<h2 id="pass-credentials-to-oligopipe">Pass credentials to oligopipe<a class="headerlink" href="#pass-credentials-to-oligopipe" title="Permanent link">#</a></h2>
 <p>As command-line arguments:</p>
-<pre><code>Annotation database credentials:
+<pre><code class="language-bash">Annotation database credentials:
   -host DB_HOST, --db-host DB_HOST
                         Hostname of annotation database server.
   -u DB_USER, --db-user DB_USER
@@ -129,7 +134,7 @@
                         Port for annotation database.
 </code></pre>
 <p>In the config YAML:</p>
-<pre><code>annotation_database:
+<pre><code class="language-yaml">annotation_database:
   host:
   user:
   password:
@@ -142,12 +147,14 @@
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../js/jquery-3.6.0.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
         <script>
             var base_url = "..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../js/base.js" defer></script>
-        <script src="../search/main.js" defer></script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
