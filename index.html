@@ -12,9 +12,12 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/font-awesome.min.css" rel="stylesheet">
         <link href="css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="js/jquery-1.10.2.min.js" defer></script>
+        <script src="js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
     <body class="homepage">
@@ -33,8 +36,18 @@
                             <li class="navitem">
                                 <a href="input/" class="nav-link">Input</a>
                             </li>
-                            <li class="navitem">
-                                <a href="preprocess/" class="nav-link">Preprocessing</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Preprocessing <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="preprocess/" class="dropdown-item">Preprocessing pipeline</a>
+</li>
+                                    
+<li>
+    <a href="database/" class="dropdown-item">Annotation database</a>
+</li>
+                                </ul>
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Methods <b class="caret"></b></a>
@@ -54,6 +67,9 @@
                             </li>
                             <li class="navitem">
                                 <a href="faq/" class="nav-link">FAQ</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="about/" class="nav-link">About</a>
                             </li>
                         </ul>
 
@@ -83,12 +99,12 @@
             
             <li class="nav-item" data-level="1"><a href="#oligopipe-documentation" class="nav-link">Oligopipe documentation</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#summary" class="nav-link">Summary</a>
-              <ul class="nav flex-column">
             <li class="nav-item" data-level="3"><a href="#what-can-you-do-with-oligopipe" class="nav-link">What can you do with oligopipe?</a>
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="3"><a href="#important-note" class="nav-link">Important note</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
@@ -99,23 +115,33 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="oligopipe-documentation">Oligopipe documentation<a class="headerlink" href="#oligopipe-documentation" title="Permanent link">#</a></h1>
-<p>Click on a header on the panel above to get directed to the main sections of this documentation</p>
-<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">#</a></h2>
-<p><code>oligopipe</code> is a Python package for the prediction  candidate disease-causing variant combinations, aiming to aid in uncovering the causes of <strong>oligogenic diseases</strong> (<em>i.e.</em> diseases caused by variants in a small number of genes). 
-This tool integrates innovative <strong>machine learning methods</strong> for combinatorial variant pathogenicity prediction.</p>
-<h3 id="what-can-you-do-with-oligopipe">What can you do with <code>oligopipe</code>?<a class="headerlink" href="#what-can-you-do-with-oligopipe" title="Permanent link">#</a></h3>
-<p>SUBMIT AND FILTER YOUR VARIANTS</p>
-<p>You can submit the variants of a single individual either as a <a href="input/##1-tab-delimited-variant-list">variant list</a> 
-or a <a href="input/#2-vcf-file">VCF file</a>.<br />
-You can also <a href="preprocess/#data-filtering">filter</a> your variants based on their Minor Allele Frequency (MAF), their position in the gene and/or based on a specific gene panel of your choice.</p>
-<p>PREDICT CANDIDATE DISEASE-CAUSING VARIANT COMBINATIONS</p>
-<p>With <code>oligopipe</code> you can predict candidate pathogenic variant combinations in any gene pair present in your data with
-<a href="varcopp/">VarCoPP</a>.</p>
 <blockquote>
-<p><strong>NOTE:</strong> The results of this pipeline are based on <strong>predictive tools.</strong> They are provided for research, educational and informational purposes only and the pathogenicity predictions should be subject to further scientific and clinical investigation.<br />
-It is <strong>not in any way</strong> intended to be used as a substitute for professional medical advice, diagnosis, treatment or care.</p>
+<p>Click on a header on the panel above to get directed to the different main sections of this documentation</p>
 </blockquote>
-<hr /></div>
+<p><a href="https://pypi.org/project/oligopipe/">oligopipe</a> is a Python package for the discovery of <strong>candidate disease-causing variant combinations</strong>, aiming to aid in 
+uncovering the causes of <strong>oligogenic diseases</strong> (<em>i.e.</em> diseases caused by variants in a small number of genes). 
+This tool integrates innovative <strong>machine learning methods</strong> for combinatorial variant pathogenicity prediction developed
+at the <a href="https://ibsquare.be">Interuniveristy Institute of Bioinformatics in Brussels</a>.</p>
+<p>It is available as a <strong>CLI</strong> that takes arguments (see <code>--help</code>) either directly or via a YAML configuration file.</p>
+<h3 id="what-can-you-do-with-oligopipe">What can you do with <code>oligopipe</code>?<a class="headerlink" href="#what-can-you-do-with-oligopipe" title="Permanent link">#</a></h3>
+<p>The CLI tool currently contains three modules:</p>
+<pre><code>Commands:
+  Run oligopipe {command} -h to get detailed help
+
+  {predict,prioritize,config}
+    predict             Run a VarCoPP prediction
+    prioritize          Run a prioritization analysis with HOP -- under construction
+    config              Show the template config file
+</code></pre>
+<p>The <strong>PREDICT</strong> and <strong>PRIORITIZE</strong> modules both <a href="input/">take in your variant data</a>, 
+<a href="preprocess/">preprocess</a> it according to your submitted settings, and either <a href="varcopp/">predict with VarCoPP</a> 
+or <a href="hop/">prioritize with HOP</a> the candidate pathogenic variant combinations in any gene pair.</p>
+<p>With <strong>CONFIG</strong> you can show a template for the input config YAML which can be used instead of / in combination with 
+the command-line arguments. The latter will always get priority if both are given for a specific argument.</p>
+<h3 id="important-note">Important note<a class="headerlink" href="#important-note" title="Permanent link">#</a></h3>
+<p>The results of these pipelines are based on <strong>predictive tools.</strong> They are provided for research, 
+educational and informational purposes only and the pathogenicity predictions should be subject to further scientific and clinical investigation.<br />
+It is <strong>not in any way</strong> intended to be used as a substitute for professional medical advice, diagnosis, treatment or care.</p></div>
             </div>
         </div>
 
@@ -123,14 +149,12 @@ It is <strong>not in any way</strong> intended to be used as a substitute for pr
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
-        <script src="js/jquery-3.6.0.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
         <script>
             var base_url = ".",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="js/base.js"></script>
-        <script src="search/main.js"></script>
+        <script src="js/base.js" defer></script>
+        <script src="search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -197,6 +221,6 @@ It is <strong>not in any way</strong> intended to be used as a substitute for pr
 </html>
 
 <!--
-MkDocs version : 1.5.3
-Build Date UTC : 2023-11-21 12:18:08.288606+00:00
+MkDocs version : 1.3.1
+Build Date UTC : 2023-11-27 09:06:43.576522+00:00
 -->

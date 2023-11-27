@@ -8,13 +8,16 @@
         
         <link rel="canonical" href="https://oligopipe.docs.com/preprocess/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Preprocessing - oligopipe</title>
+        <title>Preprocessing pipeline - oligopipe</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
     <body>
@@ -33,8 +36,18 @@
                             <li class="navitem">
                                 <a href="../input/" class="nav-link">Input</a>
                             </li>
-                            <li class="navitem active">
-                                <a href="./" class="nav-link">Preprocessing</a>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Preprocessing <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Preprocessing pipeline</a>
+</li>
+                                    
+<li>
+    <a href="../database/" class="dropdown-item">Annotation database</a>
+</li>
+                                </ul>
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Methods <b class="caret"></b></a>
@@ -55,6 +68,9 @@
                             <li class="navitem">
                                 <a href="../faq/" class="nav-link">FAQ</a>
                             </li>
+                            <li class="navitem">
+                                <a href="../about/" class="nav-link">About</a>
+                            </li>
                         </ul>
 
                     <ul class="nav navbar-nav ml-auto">
@@ -69,7 +85,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../varcopp/" class="nav-link">
+                                <a rel="next" href="../database/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -146,47 +162,66 @@
 
 <h1 id="data-filtering-and-annotation">Data filtering and annotation<a class="headerlink" href="#data-filtering-and-annotation" title="Permanent link">#</a></h1>
 <h2 id="data-filtering">Data filtering<a class="headerlink" href="#data-filtering" title="Permanent link">#</a></h2>
-<p>In the <strong>Submit variants</strong> page, <code>oligopipe</code> offers a recommended variant and gene filtering procedure that will automatically run when you submit your data. This procedure is highly recommended, as it will limit the amount of variant combinations to be tested and will restrict the analysis to the most relevant variants.</p>
+<p>When passing no extra arguments to the <code>oligopipe</code> CLI, it will run with the default filtering procedure.</p>
 <p>There are two types of filtering offered by <code>oligopipe</code>: a variant filtering and a gene filtering procedure.</p>
 <h3 id="1-variant-filtering">1. Variant filtering<a class="headerlink" href="#1-variant-filtering" title="Permanent link">#</a></h3>
+<p>As command-line arguments:</p>
+<pre><code>Filtering options:
+  -m MAX_MAF, --max-maf MAX_MAF
+                        The MAF to filter variants (default: 0.035).
+  --keep-intron-syn     Don't remove intronic and synonymous variants (not recommended).
+  --keep-intergenic     Don't remove intergenic variants (not recommended).
+
+</code></pre>
+<p>In the config YAML:</p>
+<pre><code>variant_filters:
+  max_maf: 0.035
+  remove_intronic_synonymous: True
+  remove_intergenic: True
+</code></pre>
 <p>The variant filtering procedure ensures that your analysis will contain variants in accordance with the variant types 
-used to train the predictive methods (<a href="../varcopp/">VarCoPP</a> and <a href="../hop/">HOP</a>) integrated in <code>oligopipe</code>: 
+used to train <a href="../varcopp/">VarCoPP</a>: 
 exonic and splicing variants of MAF lower or equal than 3.5% in protein-coding genes.</p>
-<p>The three different filtering options are already pre-selected in the Variant Filtering panel of the submission page. 
-You can <strong>unselect</strong> a filtering option, by clicking on its corresponding check-box.</p>
 <h5 id="maf"><strong>MAF</strong><a class="headerlink" href="#maf" title="Permanent link">#</a></h5>
-<p>Select the minimum threshold of MAF for the variants. A MAF of ≤ 0.035 was used to train VarCoPP and is the recommended threshold.</p>
-<h5 id="remove-intergenic"><strong>Remove Intergenic</strong><a class="headerlink" href="#remove-intergenic" title="Permanent link">#</a></h5>
-<p>Removes variants that are not inside the defined gene coordinates, based on the selected assembly (GRCh37/hg19 or GRCh38/hg38).</p>
-<h5 id="remove-intronic-and-synonymous"><strong>Remove intronic and synonymous</strong><a class="headerlink" href="#remove-intronic-and-synonymous" title="Permanent link">#</a></h5>
-<p>Removes:</p>
+<p>Allows to change the minimum threshold of MAF for the variants. A MAF of ≤ 0.035 was used to train VarCoPP and is the recommended/default threshold.</p>
+<h5 id="keep-intergenic"><strong>Keep Intergenic</strong><a class="headerlink" href="#keep-intergenic" title="Permanent link">#</a></h5>
+<p>Add this flag if you want to disable the default setting of removing variants that are not inside the defined gene coordinates, based on the selected assembly (GRCh37/hg19 or GRCh38/hg38).</p>
+<h5 id="keep-intronic-and-synonymous"><strong>Keep intronic and synonymous</strong><a class="headerlink" href="#keep-intronic-and-synonymous" title="Permanent link">#</a></h5>
+<p>Add this flag if you want to disable the following defaults:</p>
 <ul>
 <li>
-<p>all <strong>intronic</strong> variants that have a distance bigger than 13 nucleotides from each exon edge, based on the exon coordinates of the <strong>canonical transcript</strong> of the gene.  </p>
+<p>removing all <strong>intronic</strong> variants that have a distance bigger than 13 nucleotides from each exon edge, based on the exon coordinates of the <strong>canonical transcript</strong> of the gene.</p>
 </li>
 <li>
-<p>all <strong>synonymous</strong> variants that have a distance bigger than 195 nucleotides from each exon edge, based on the exon coordinates of the <strong>canonical transcript</strong> of the gene.</p>
+<p>removoing all <strong>synonymous</strong> variants that have a distance bigger than 195 nucleotides from each exon edge, based on the exon coordinates of the <strong>canonical transcript</strong> of the gene.</p>
 </li>
 </ul>
 <blockquote>
-<p><strong>NOTE:</strong> apart from the requested filtering steps, <code>oligopipe</code> may also exclude some extra variants during the <strong>data annotation process</strong>. You can consult the complete list of variant exclusion cases during that process <a href="#variant_exclusion">here</a>.</p>
+<p><strong>NOTE:</strong> apart from the requested filtering steps, <code>oligopipe</code> may also exclude some extra variants during the 
+<strong>data annotation process</strong>. You can consult the complete list of variant exclusion cases during that
+process <a href="#variant_exclusion">here</a>.</p>
 </blockquote>
 <h3 id="2-gene-filtering">2. Gene filtering<a class="headerlink" href="#2-gene-filtering" title="Permanent link">#</a></h3>
+<p>As command-line argument:</p>
+<pre><code>Filtering options:
+  -gp gene_panel, --panel gene_panel
+                        Gene panel file, containing a list of gene names or ENSGs to restrict the analysis.
+</code></pre>
+<p>In the config YAML:</p>
+<pre><code>gene_panel_file:
+</code></pre>
 <p>The gene filtering option restricts the analysis to a <strong>specified list of relevant genes</strong> that can be present in your data. 
 This procedure is <strong>highly recommended</strong> in case your VCF contains the complete exome of an individual, 
 as it can dramatically limit the amount of False Positives that can be obtained.</p>
-<p>To run your analysis only with a subset of genes, you can simply upload a .txt file with the gene symbols you are 
+<p>To run your analysis only with a subset of genes, you can simply upload a .txt file with the gene names / ENSGs you are 
 interested to include, each gene being in a different line. 
 <code>oligopipe</code> will use this list to filter the genes that will be used in the analysis.</p>
-<blockquote>
-<p><strong>NOTE:</strong> please make sure that you provide the <strong>official approved symbol</strong> for each gene (for verification, you can consult the <a href="http://www.genenames.org/">HGNC gene nomenclature page</a>.</p>
-</blockquote>
 <h2 id="data-annotation">Data annotation<a class="headerlink" href="#data-annotation" title="Permanent link">#</a></h2>
-<p>After you submit your data, <code>oligopipe</code>:</p>
+<p>After you launch <code>oligopipe</code>, the program will:</p>
 <ol>
-<li>automatically annotates them with the biological information needed for the integrated methods</li>
-<li>creates all possible variant combinations between any pair of genes present in your variant input and</li>
-<li>orders the variants and genes inside each combination.</li>
+<li>automatically annotate your data with the biological information needed for the integrated methods, for which it needs to connect to an <a href="../database/">annotation database</a>; </li>
+<li>create all possible variant combinations between any pair of genes present in your variant input;</li>
+<li>order the variants and genes inside each combination.</li>
 </ol>
 <p>Below, you can find some important parameters for each process.</p>
 <h3 id="1-gene-annotation">1. Gene annotation<a class="headerlink" href="#1-gene-annotation" title="Permanent link">#</a></h3>
@@ -198,11 +233,15 @@ interested to include, each gene being in a different line.
 <li>the <a href="https://journals.plos.org/plosgenetics/article/info:doi/10.1371/journal.pgen.1003709">Residual Variation Intolerance Score (RVIS)</a>, a metric that show the susceptibility of a gene to disease. Lower values of RVIS indicate greater susceptibility of a gene to candidate disease-causing mutations.</li>
 </ul>
 <h3 id="2-gene-pair-annotation">2. Gene pair annotation<a class="headerlink" href="#2-gene-pair-annotation" title="Permanent link">#</a></h3>
-<p><code>oligopipe</code> annotates a gene pair with the gene pair features required by <a href="../varcopp/#prediction-features">VarCoPP</a> (detailed description of the features and their sources in the link).</p>
-<p><code>oligopipe</code> uses the <a href="https://journals.plos.org/plosgenetics/article/info:doi/10.1371/journal.pgen.1003709">Residual Variation Intolerance Score (RVIS)</a> metric to <strong>order the appearance of genes</strong> inside each digenic variant combination, with gene A being always the gene with the lower RVIS value, and thus more probable to be have a disturbed function due to the presence of a variant. You can find more details about how <code>oligopipe</code> creates digenic variant combinations and orders variants and genes in the <a href="./#creating-digenic-variant-combinations">Creating digenic variant combinations</a> section.</p>
+<p><code>oligopipe</code> annotates a gene pair with the <a href="../varcopp/#prediction-features">gene pair features required by VarCoPP</a>.</p>
+<p><code>oligopipe</code> uses the <a href="https://journals.plos.org/plosgenetics/article/info:doi/10.1371/journal.pgen.1003709">Residual Variation Intolerance Score (RVIS)</a>
+metric to <strong>order the appearance of genes</strong> inside each digenic variant combination, with gene A being always the gene with the lower RVIS value,
+and thus more probable to be have a disturbed function due to the presence of a variant. 
+You can find more details about how <code>oligopipe</code> creates digenic variant combinations and orders variants and 
+genes in the <a href="./#creating-digenic-variant-combinations">Creating digenic variant combinations</a> section.</p>
 <h3 id="3-variant-annotation">3. Variant annotation<a class="headerlink" href="#3-variant-annotation" title="Permanent link">#</a></h3>
 <p><code>oligopipe</code> first maps a variant in a gene based on the <a href="#1-gene-annotation">Gene annotation</a> process described above. 
-It then annotates each variant with the required variant features for <a href="../varcopp/#prediction-features">VarCoPP</a>, the most important being the <a href="https://www.ncbi.nlm.nih.gov/pubmed/?term=24487276%5Buid%5D">CADD score</a> (detailed description of the features and their sources in the link)</p>
+It then annotates each variant with the <a href="../varcopp/#prediction-features">required variant features for VarCoPP</a>, the most important being the <a href="https://www.ncbi.nlm.nih.gov/pubmed/?term=24487276%5Buid%5D">CADD score</a>.</p>
 <p>When <code>oligopipe</code> creates digenic variant combinations, it uses the <a href="https://www.ncbi.nlm.nih.gov/pubmed/?term=24487276%5Buid%5D">CADD score</a> 
 to <strong>order the appearance of variants</strong> that are present inside the same gene (i.e. in cases of heterozygous compound variants). 
 You can find more details about how <code>oligopipe</code> creates digenic variant combinations and orders variants and genes 
@@ -213,16 +252,16 @@ in the <a href="#creating-digenic-variant-combinations">Creating digenic variant
 <li><strong>Variant not exonic in canonical transcript</strong><br />
     We use only the canonical Ensembl transcript identifiers to annotate our variants. If you have selected to exclude intronic variants from your analysis, if the variant is not exonic in the canonical transcript of the gene, even if it may be exonic in an alternative transcript, it will be excluded.</li>
 <li><strong>Variant with invalid zygosity</strong><br />
-    Variants with GT:0/0 or GT:0|0 in a VCF file are considered invalid and are excluded from the analysis.</li>
+    Variants with GT: 0/0, 0|0, ./. or . in a VCF file are considered invalid and are excluded from the analysis.</li>
 <li><strong>CADD score not available</strong><br />
 <code>oligopipe</code> annotates variants with a <a href="https://www.ncbi.nlm.nih.gov/pubmed/?term=24487276%5Buid%5D">CADD score</a>, which is a feature required for the pathogenicity predictions. As this feature is important for the predictions, if a CADD score is not available for a variant, that variant is excluded for the analysis, as a missing value may severely alter the results.</li>
 <li><strong>Variants only in one gene</strong><br />
     As <code>oligopipe</code> creates combinations between <strong>gene pairs</strong>, if your input data includes variants from one gene only, you will not get any results.</li>
 <li><strong>The variant is a CNV or medium/long-sized InDel</strong><br />
-<code>oligopipe</code> analyses <strong>only</strong> SNVs and small insertions and deletions (up to 100 bp currently). Any other variant type in your data is automatically excluded from the analysis. This is mainly due to the computational resource limitations of our service.</li>
+<code>oligopipe</code> analyses <strong>only</strong> SNVs and small insertions and deletions (up to 100 bp currently). Any other variant type in your data is automatically excluded from the analysis.</li>
 </ul>
 <h2 id="creating-digenic-variant-combinations">Creating digenic variant combinations<a class="headerlink" href="#creating-digenic-variant-combinations" title="Permanent link">#</a></h2>
-<p>After annotation, VarCoPP creates all possible variant combinations between any gene pair present in your input, taking into consideration any filtering options you have included during your variant submission.</p>
+<p>After annotation, VarCoPP creates all possible variant combinations between any gene pair present in your input, taking into consideration any filtering options you have included.</p>
 <p>You can find below a list of details and constraints that take place during this procedure.</p>
 <h3 id="1-number-of-variants-per-combination">1. Number of variants per combination<a class="headerlink" href="#1-number-of-variants-per-combination" title="Permanent link">#</a></h3>
 <p><code>oligopipe</code> creates for any gene pair variant combinations that can be:</p>
@@ -260,14 +299,12 @@ If a single gene contains more than two heterozygous variants, these are used in
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
-        <script src="../js/jquery-3.6.0.min.js"></script>
-        <script src="../js/bootstrap.min.js"></script>
         <script>
             var base_url = "..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../js/base.js"></script>
-        <script src="../search/main.js"></script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
