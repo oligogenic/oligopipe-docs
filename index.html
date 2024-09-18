@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,9 +10,13 @@
         <link rel="shortcut icon" href="img/favicon.ico">
         <title>oligopipe</title>
         <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/fontawesome.min.css" rel="stylesheet">
+        <link href="css/brands.min.css" rel="stylesheet">
+        <link href="css/solid.min.css" rel="stylesheet">
+        <link href="css/v4-font-face.min.css" rel="stylesheet">
         <link href="css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
         <script>hljs.highlightAll();</script> 
     </head>
@@ -22,7 +26,7 @@
             <div class="container">
                 <a class="navbar-brand" href=".">oligopipe</a>
                 <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -30,11 +34,11 @@
                 <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="input/" class="nav-link">Input</a>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Preprocessing <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Preprocessing</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -46,8 +50,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Methods <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Methods</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -55,24 +59,24 @@
 </li>
                                     
 <li>
-    <a href="hop/" class="dropdown-item">Prioritization - HOP</a>
+    <a href="hop/" class="dropdown-item">Prioritization - Hop</a>
 </li>
                                 </ul>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="results/" class="nav-link">Results</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="faq/" class="nav-link">FAQ</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="about/" class="nav-link">About</a>
                             </li>
                         </ul>
 
-                    <ul class="nav navbar-nav ml-auto">
+                    <ul class="nav navbar-nav ms-md-auto">
                         <li class="nav-item">
-                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
@@ -83,24 +87,24 @@
 
         <div class="container">
             <div class="row">
-                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
     <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
             <span class="fa fa-angle-down"></span>
         </button>
     </div>
 
     
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#oligopipe-documentation" class="nav-link">Oligopipe documentation</a>
+            <li class="nav-item" data-bs-level="1"><a href="#oligopipe-documentation" class="nav-link">Oligopipe documentation</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#what-can-you-do-with-oligopipe" class="nav-link">What can you do with oligopipe?</a>
+            <li class="nav-item" data-bs-level="3"><a href="#what-can-you-do-with-oligopipe" class="nav-link">What can you do with oligopipe?</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="3"><a href="#important-note" class="nav-link">Important note</a>
+            <li class="nav-item" data-bs-level="3"><a href="#important-note" class="nav-link">Important note</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -118,7 +122,7 @@
 <p><a href="https://pypi.org/project/oligopipe/">oligopipe</a> is a Python package for the discovery of <strong>candidate disease-causing variant combinations</strong>, aiming to aid in 
 uncovering the causes of <strong>oligogenic diseases</strong> (<em>i.e.</em> diseases caused by variants in a small number of genes). 
 This tool integrates innovative <strong>machine learning methods</strong> for combinatorial variant pathogenicity prediction developed
-at the <a href="https://ibsquare.be">Interuniveristy Institute of Bioinformatics in Brussels</a>.</p>
+at the <a href="https://ibsquare.be">Interuniversity Institute of Bioinformatics in Brussels</a>.</p>
 <p>It is available as a <strong>CLI</strong> that takes arguments (see <code>--help</code>) either directly or via a YAML configuration file.</p>
 <h3 id="what-can-you-do-with-oligopipe">What can you do with <code>oligopipe</code>?<a class="headerlink" href="#what-can-you-do-with-oligopipe" title="Permanent link">#</a></h3>
 <p>The CLI tool currently contains three modules:</p>
@@ -127,7 +131,7 @@ at the <a href="https://ibsquare.be">Interuniveristy Institute of Bioinformatics
 
   {predict,prioritize,config}
     predict             Run a VarCoPP prediction
-    prioritize          Run a prioritization analysis with HOP -- under construction
+    prioritize          Run a prioritization analysis with Hop
     config              Show the template config file
 </code></pre>
 <p>The <strong>PREDICT</strong> and <strong>PRIORITIZE</strong> modules both <a href="input/">take in your variant data</a>, 
@@ -146,8 +150,7 @@ It is <strong>not in any way</strong> intended to be used as a substitute for pr
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
-        <script src="js/jquery-3.6.0.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
         <script>
             var base_url = ".",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
@@ -160,7 +163,7 @@ It is <strong>not in any way</strong> intended to be used as a substitute for pr
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="searchModalLabel">Search</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <p>From here you can search these documents. Enter your search terms below.</p>
@@ -180,7 +183,7 @@ It is <strong>not in any way</strong> intended to be used as a substitute for pr
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <table class="table">
@@ -220,6 +223,6 @@ It is <strong>not in any way</strong> intended to be used as a substitute for pr
 </html>
 
 <!--
-MkDocs version : 1.5.3
-Build Date UTC : 2023-11-27 11:36:06.707502+00:00
+MkDocs version : 1.6.1
+Build Date UTC : 2024-09-18 07:15:02.380321+00:00
 -->

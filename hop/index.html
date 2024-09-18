@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,11 +8,15 @@
         
         <link rel="canonical" href="https://oligopipe.docs.com/hop/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Prioritization - HOP - oligopipe</title>
+        <title>Prioritization - Hop - oligopipe</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
         <script>hljs.highlightAll();</script> 
     </head>
@@ -22,7 +26,7 @@
             <div class="container">
                 <a class="navbar-brand" href="..">oligopipe</a>
                 <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -30,11 +34,11 @@
                 <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../input/" class="nav-link">Input</a>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Preprocessing <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Preprocessing</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -46,8 +50,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown active">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Methods <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Methods</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -55,24 +59,24 @@
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active">Prioritization - HOP</a>
+    <a href="./" class="dropdown-item active" aria-current="page">Prioritization - Hop</a>
 </li>
                                 </ul>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../results/" class="nav-link">Results</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../faq/" class="nav-link">FAQ</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../about/" class="nav-link">About</a>
                             </li>
                         </ul>
 
-                    <ul class="nav navbar-nav ml-auto">
+                    <ul class="nav navbar-nav ms-md-auto">
                         <li class="nav-item">
-                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
@@ -93,19 +97,27 @@
 
         <div class="container">
             <div class="row">
-                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
     <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
             <span class="fa fa-angle-down"></span>
         </button>
     </div>
 
     
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#hop" class="nav-link">HOP</a>
+            <li class="nav-item" data-bs-level="1"><a href="#hop" class="nav-link">Hop</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#structure-of-hop" class="nav-link">Structure of Hop</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#important-note-and-implementation" class="nav-link">Important note and implementation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -113,11 +125,43 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="hop">HOP<a class="headerlink" href="#hop" title="Permanent link">#</a></h1>
+<h1 id="hop">Hop<a class="headerlink" href="#hop" title="Permanent link">#</a></h1>
 <blockquote>
 <p>Via the <code>oligopipe prioritize</code> submodule</p>
 </blockquote>
-<p>Under construction - the method is in review so currently not available yet</p></div>
+<p>Hop stands for the High-throughput oligogenic prioritizer. It is a prioritization tool which, given a patients' WES
+data and information about the patient's disease (encoded as phenotypic terms, a list of candidate genes for the disease,
+or both), outputs a ranking of bi-locus variant combinations which are the most likely to cause the disease. </p>
+<p>The method has been published in <em>Bioinformatics</em>: <a href="https://doi.org/10.1093/bioinformatics/btae184">https://doi.org/10.1093/bioinformatics/btae184</a>.</p>
+<h2 id="structure-of-hop">Structure of Hop<a class="headerlink" href="#structure-of-hop" title="Permanent link">#</a></h2>
+<p><strong>METHOD</strong></p>
+<p>Hop assigns each variant combination three scores: a Pathogenicity Score (PS), 
+a Disease-relevance Score (DS) and a Final Score (FS). The Final Score is used to rank all
+variant combinations in the exome in decreasing order (i.e. the first ranked combination is the combination with the highest FS).</p>
+<p><strong>PATHOGENICITY SCORING</strong></p>
+<p>The PS is obtained from the VarCoPP2.0 predictor, which assigns bi-locus combinations a value between 0 and 1
+which corresponds to the probability that the combination is disease-causing. For a complete description of this predictor 
+see <a href="../varcopp/">VarCoPP</a>. </p>
+<p><strong>DISEASE-RELEVANCE SCORING</strong></p>
+<p>The DS is computed using a Random-Walk-with-Restart (RWR) algorithm in a knowledge graph. 
+The knowledge graph used is the Biological networks and Oligogenic Combinations integrated as a Knowledge graph (BOCK), and includes biological databases and ontologies which were deemed relevant for the study 
+of oligogenic diseases. More information on BOCK and the data sources can be found in the following article: <a href="https://doi.org/10.1186/s12859-023-05451-5">https://doi.org/10.1186/s12859-023-05451-5</a>. </p>
+<p>The RWR algorithm starts from a set of seed nodes and outputs a score for each node in the network which can be interpreted 
+as a proximity score of the node to the set of seeds. In Hop, the seed nodes can be the HPO terms describing the patient's phenotype,
+genes belonging to a gene panel associated with the patient's disease or both types of information. 
+From these seeds, the RWR algorithm is used to score the proximity of all human genes. 
+The Disease-relevance Score of a gene pair is then computed as the mean of the individual gene proximity scores. </p>
+<p><strong>FINAL SCORING</strong></p>
+<p>The PS and DS are normalized exome-wide using min-max normalization to ensure equal weight of the PS and DS. Then the 
+Final Score is computed as the average of the PS and DS. The combinations are ranked in descending order, so that the 
+combination with the highest Final Score is ranked first. </p>
+<h2 id="important-note-and-implementation">Important note and implementation<a class="headerlink" href="#important-note-and-implementation" title="Permanent link">#</a></h2>
+<p>Since Hop runs on all possible combinations in a provided VCF, this can lead to a large number of combinations to be 
+predicted. In order to focus on the most relevant combinations, it is therefore implemented to only output the top N 
+combinations, with <code>N</code> being a parameter that is specified by the user and defaults to 100. It is important to not use a 
+too large value of N as it can lead to memory issues. </p>
+<p>To not keep all variant combinations in an exome in memory, Hop is therefore implemented to compute the scores of all 
+possible variant combinations iteratively, and to only keep in memory the top N combinations. </p></div>
             </div>
         </div>
 
@@ -125,8 +169,7 @@
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
-        <script src="../js/jquery-3.6.0.min.js"></script>
-        <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/bootstrap.bundle.min.js"></script>
         <script>
             var base_url = "..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
@@ -139,7 +182,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="searchModalLabel">Search</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <p>From here you can search these documents. Enter your search terms below.</p>
@@ -159,7 +202,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <table class="table">
