@@ -42,7 +42,7 @@ Add this flag if you want to disable the following defaults:
 
 * removing all **intronic** variants that have a distance bigger than 13 nucleotides from each exon edge, based on the exon coordinates of the **canonical transcript** of the gene.
     
-* removoing all **synonymous** variants that have a distance bigger than 195 nucleotides from each exon edge, based on the exon coordinates of the **canonical transcript** of the gene.
+* removing all **synonymous** variants that have a distance bigger than 195 nucleotides from each exon edge, based on the exon coordinates of the **canonical transcript** of the gene.
 
 
 > **NOTE:** apart from the requested filtering steps, `oligopipe` may also exclude some extra variants during the 
@@ -50,6 +50,8 @@ Add this flag if you want to disable the following defaults:
 > process [here](#variant-exclusion).
 
 ### 2. Gene filtering
+> For the ``predict`` option only. For the `prioritize`, all genes in the exome are considered. 
+
 As command-line argument:
 ```bash
 Filtering options:

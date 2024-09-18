@@ -13,7 +13,7 @@ nav:
     - Annotation database: database.md
   - Methods:
     - Prediction - VarCoPP: varcopp.md
-    - Prioritization - HOP: hop.md
+    - Prioritization - Hop: hop.md
   - Results: results.md
   - FAQ: faq.md
   - About: about.md

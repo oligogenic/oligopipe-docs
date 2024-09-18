@@ -5,7 +5,7 @@
 [oligopipe](https://pypi.org/project/oligopipe/) is a Python package for the discovery of **candidate disease-causing variant combinations**, aiming to aid in 
 uncovering the causes of **oligogenic diseases** (_i.e._ diseases caused by variants in a small number of genes). 
 This tool integrates innovative **machine learning methods** for combinatorial variant pathogenicity prediction developed
-at the [Interuniveristy Institute of Bioinformatics in Brussels](https://ibsquare.be).
+at the [Interuniversity Institute of Bioinformatics in Brussels](https://ibsquare.be).
 
 It is available as a **CLI** that takes arguments (see `--help`) either directly or via a YAML configuration file.
 
@@ -18,7 +18,7 @@ Commands:
 
   {predict,prioritize,config}
     predict             Run a VarCoPP prediction
-    prioritize          Run a prioritization analysis with HOP -- under construction
+    prioritize          Run a prioritization analysis with Hop
     config              Show the template config file
 ```
 

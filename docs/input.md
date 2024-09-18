@@ -1,4 +1,4 @@
-The variant input
+Required inputs
 =================
 As command-line argument:
 ```bash
@@ -28,7 +28,8 @@ variant_input:
 `oligopipe` accepts a list of variants from a single individual only, as it creates all possible variant combinations 
 between pairs assuming that these belong to the same individual.
 
-You can provide either Single Nucleotide Variants (SNVs) or small insertions/deletions (indels).
+You can provide both Single Nucleotide Variants (SNVs) or small insertions/deletions (indels). 
+Larger structural variants, copy-number variants and indels of length > 100 bps can not currently be predicted.
 
 
 Types of input files
@@ -95,3 +96,33 @@ Patient information
 Except from the variant list, you should also provide (if available) the sex information of the patient, i.e. if the person is a **male** (M) or a **female** (F).
 
 `oligopipe` handles differently X-linked variants in males (**hemizygous** variants) compared to females, and therefore this information is important in order to provide better predictions.
+
+
+Disease information
+-------------------
+> For the prioritize option only.
+
+To run the prioritization with Hop you need to add information about the patient's disease. This can be done by providing
+ a list of HPO terms (and more specifically the **HPO ids** in format `HP:0000XXX`), and/or a list of candidate genes from a gene panel
+(**HGNC gene names** and **Ensembl gene ids** are accepted). 
+
+At least one type of information needs to be provided or the prioritization job will not run. 
+
+As command-line argument:
+
+```bash
+Variant input:
+  -hpo HPO_FILE, --hpo-terms HPO_FILE
+                        File containing a list of HPO IDs (e.g. HP:0001166).
+  -gp PANEL_FILE --panel PANEL_FILE 
+                        Gene panel file, containing a list of gene names or ENSGs.
+```
+
+In the config YAML:
+
+```yaml
+gene_panel_file:
+
+hpo_terms_file:
+```
+

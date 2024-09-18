@@ -12,6 +12,9 @@ Output:
                         Optional prefix for the output files, use for example the patient ID.
   -f, --force           Force re-using an output directory, which may overwrite files.
   -v, --verbose         Show debug logs
+  
+  # For prioritize option only
+  -N, --nb-top-ranked   The number of top-ranked combinations to retain (default = 100).
 ```
 In the config YAML:
 ```yaml
@@ -60,3 +63,10 @@ For further explanations on how this pathogenicity score is calculated, you can 
 From the raw results we also create a table (`predicted_variant_combinations.tsv`) with all digenic variant combinations and their predictions.
 
 ## Prioritization results
+
+### Raw results
+A JSON file `predictions_with_annotations.json` containing predictions as well as the annotated features for each variant, gene and variant combination.
+
+### Digenic combinations table
+From the raw results we also create a table (`prioritized_variant_combinations.tsv`) with the top N digenic variant 
+combinations and their scores and ranks.
